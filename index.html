@@ -1,0 +1,248 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <title>💌 Para mi amor, Marissa ❤️</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+  <style>
+    @import url('https://fonts.googleapis.com/css2?family=Quicksand:wght@400;700&family=Great+Vibes&display=swap');
+
+    * {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+    }
+
+    body {
+      font-family: "Quicksand", sans-serif;
+      background: linear-gradient(-45deg, #ffe0e6, #fff5f8, #ffd8e1, #ffeef3);
+      background-size: 400% 400%;
+      animation: gradientBG 12s ease infinite;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      min-height: 100vh;
+      overflow: hidden;
+      -webkit-tap-highlight-color: transparent;
+      color: #4a2c2c;
+    }
+
+    @keyframes gradientBG {
+      0% { background-position: 0% 50%; }
+      50% { background-position: 100% 50%; }
+      100% { background-position: 0% 50%; }
+    }
+
+    /* corazones flotando */
+    .heart {
+      position: absolute;
+      width: 18px;
+      height: 18px;
+      background: rgba(255, 182, 193, 0.9);
+      transform: rotate(45deg);
+      animation: floatHeart 8s linear infinite;
+    }
+
+    .heart::before,
+    .heart::after {
+      content: '';
+      position: absolute;
+      width: 18px;
+      height: 18px;
+      background: rgba(255, 182, 193, 0.9);
+      border-radius: 50%;
+    }
+
+    .heart::before {
+      top: -9px;
+      left: 0;
+    }
+
+    .heart::after {
+      left: -9px;
+      top: 0;
+    }
+
+    @keyframes floatHeart {
+      0% {
+        transform: translateY(0) rotate(45deg) scale(0.8);
+        opacity: 1;
+      }
+      100% {
+        transform: translateY(-800px) rotate(45deg) scale(1.5);
+        opacity: 0;
+      }
+    }
+
+    /* sobre */
+    .envelope {
+      position: relative;
+      width: 320px;
+      height: 200px;
+      perspective: 1200px;
+      cursor: pointer;
+      animation: floaty 5s ease-in-out infinite;
+      transition: transform 1s;
+    }
+
+    @keyframes floaty {
+      0%, 100% { transform: translateY(0px); }
+      50% { transform: translateY(-8px); }
+    }
+
+    .envelope-inner {
+      position: relative;
+      width: 100%;
+      height: 100%;
+      transform-style: preserve-3d;
+      transition: transform 1s ease-in-out;
+    }
+
+    .envelope:hover .envelope-inner {
+      transform: rotateY(180deg);
+    }
+
+    .envelope-front, .envelope-back {
+      position: absolute;
+      width: 100%;
+      height: 100%;
+      backface-visibility: hidden;
+      border-radius: 12px;
+      box-shadow: 0 10px 25px rgba(0, 0, 0, 0.1);
+    }
+
+    .envelope-front {
+      background: linear-gradient(145deg, #ff8fa3, #ffb6c1);
+      color: white;
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      align-items: center;
+      text-align: center;
+      overflow: hidden;
+    }
+
+    .envelope-front h1 {
+      font-family: "Great Vibes", cursive;
+      font-size: 2.5rem;
+      margin-bottom: 10px;
+      animation: pulse 3s infinite;
+    }
+
+    @keyframes pulse {
+      0%, 100% { text-shadow: 0 0 5px #fff; }
+      50% { text-shadow: 0 0 20px #fff, 0 0 30px #ffb6c1; }
+    }
+
+    .envelope-front p {
+      font-size: 1.1rem;
+      font-weight: 600;
+    }
+
+    .envelope-back {
+      background: #fff;
+      transform: rotateY(180deg);
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      align-items: center;
+      padding: 2rem;
+      border: 2px solid #ffb6c1;
+      box-shadow: inset 0 0 20px rgba(255, 182, 193, 0.4);
+    }
+
+    .envelope-back img {
+      width: 120px;
+      border-radius: 10px;
+      box-shadow: 0 4px 15px rgba(255, 182, 193, 0.6);
+      margin-bottom: 1rem;
+      transition: transform 0.5s ease;
+    }
+
+    .envelope-back img:hover {
+      transform: scale(1.1);
+    }
+
+    .envelope-back p {
+      color: #d6336c;
+      font-size: 1.3rem;
+      font-weight: bold;
+      text-align: center;
+      animation: fadeIn 3s ease-in-out;
+    }
+
+    @keyframes fadeIn {
+      from { opacity: 0; transform: translateY(20px); }
+      to { opacity: 1; transform: translateY(0); }
+    }
+
+    .highlight {
+      display: block;
+      font-family: "Great Vibes", cursive;
+      font-size: 2rem;
+      color: #e60073;
+      margin-top: 10px;
+      animation: glow 4s ease-in-out infinite;
+    }
+
+    @keyframes glow {
+      0%, 100% { text-shadow: 0 0 8px #ff7ea8; }
+      50% { text-shadow: 0 0 20px #ff99c8, 0 0 30px #ffcce0; }
+    }
+
+    audio {
+      display: none;
+    }
+  </style>
+</head>
+<body>
+
+  <!-- corazones flotando -->
+  <script>
+    function createHeart() {
+      const heart = document.createElement('div');
+      heart.classList.add('heart');
+      heart.style.left = Math.random() * 100 + 'vw';
+      heart.style.animationDuration = Math.random() * 3 + 5 + 's';
+      document.body.appendChild(heart);
+      setTimeout(() => heart.remove(), 8000);
+    }
+    setInterval(createHeart, 400);
+  </script>
+
+  <!-- sobre -->
+  <div class="envelope">
+    <div class="envelope-inner">
+      <div class="envelope-front">
+        <h1>Para: Marissa 💖</h1>
+        <p>De: Tu amorcito Yonathan ✨</p>
+      </div>
+
+      <div class="envelope-back">
+        <img src="https://img.freepik.com/vector-premium/pulgar-dedos-imprimir-marca-huella-dactilar-amor-corazon_53500-1839.jpg" alt="Corazón amor">
+        <p>Cuanto más tiempo paso contigo,
+          <span class="highlight">más mushote te amo 💞</span>
+        </p>
+        <img src="https://img.freepik.com/fotos-premium/imagen-flores-amarillas-palabras-sol-citadas-ella_1191871-60686.jpg" alt="Flores amor">
+      </div>
+    </div>
+  </div>
+
+  <!-- música romántica -->
+  <audio autoplay loop>
+    <source src="https://dl.dropboxusercontent.com/scl/fi/s8s6f19dl9v2o2oyffrjv/romantic-soft.mp3?rlkey=4ghbt9nlz2lwhj8dnbty3y5uq&dl=0" type="audio/mp3">
+  </audio>
+
+  <!-- protección -->
+  <script>
+    document.addEventListener('contextmenu', e => e.preventDefault());
+    document.addEventListener('keydown', e => {
+      if (e.key === 'F12' || 
+          (e.ctrlKey && e.shiftKey && e.key === 'I') || 
+          (e.ctrlKey && e.key === 'u')) e.preventDefault();
+    });
+  </script>
+
+</body>
+</html>
